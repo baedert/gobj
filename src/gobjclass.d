@@ -49,6 +49,9 @@ void generateClass() {
 
 	writeln ("\n----- Header File -----\n");
 
+	writeln ("#ifndef __" ~ classNameUppercase ~ "_H__");
+	writeln ("#define __" ~ classNameUppercase ~ "_H__");
+	writeln ("");
 	writeln ("typedef struct _", className, "      ", className, ";");
 	writeln ("typedef struct _", className, "Class ", className, "Class;");
 	writeln ("");
@@ -56,7 +59,7 @@ void generateClass() {
 	writeln ("#define ", classNameUppercase, "(obj)           (G_TYPE_CHECK_INSTANCE_CAST(obj, ", type_macro, ", ", className, "))");
 	writeln ("#define ", classNameUppercase, "_CLASS(cls)     (G_TYPE_CHECK_CLASS_CAST(cls, ", type_macro, ", ", className, "Class))");
 	writeln ("#define ", libPrefixUppercase, "_IS_", classNameNoPrefixUppercase, "(obj)        (G_TYPE_CHECK_INSTANCE_TYPE(obj, ", type_macro, "))");
-	writeln ("#define ", libPrefixUppercase, "_IS_", classNameNoPrefixUppercase, "_CLASS(cls)   (G_TYPE_CHECK_CLASS_TYPE(cls, ", type_macro, "))");
+	writeln ("#define ", libPrefixUppercase, "_IS_", classNameNoPrefixUppercase, "_CLASS(cls)  (G_TYPE_CHECK_CLASS_TYPE(cls, ", type_macro, "))");
 	writeln ("#define ", libPrefixUppercase, "_",  classNameNoPrefixUppercase, "_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS(obj, ", type_macro, ", ", className, "Class))");
 
 	writeln ("");
@@ -72,6 +75,8 @@ void generateClass() {
 	writeln ("");
 
 	writeln ("GType ", classPrefix, "_get_type (void) G_GNUC_CONST;");
+
+	writeln("\n\n#endif");
 
 
 	writeln ("\n----- Source File -----\n");
